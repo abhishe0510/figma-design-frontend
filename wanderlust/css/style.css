@@ -415,135 +415,18 @@ body {
 }
 
 /* ==========================================================================
-   Tablet — 768px frame
-   ========================================================================== */
-@media (min-width: 768px) {
-  :root {
-    --gutter: 80px;
-  }
-
-  .nav-toggle {
-    display: none;
-  }
-
-  .nav-menu {
-    position: static;
-    flex-direction: row;
-    align-items: center;
-    gap: 32px;
-    padding: 0;
-    border: 0;
-    background: none;
-    box-shadow: none;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-  }
-
-  .nav-links {
-    flex-direction: row;
-    align-items: center;
-    gap: 32px;
-  }
-
-  .nav-link {
-    padding: 0;
-  }
-
-  .nav-link.is-active {
-    padding-bottom: 4px;
-    border-bottom: 2px solid var(--link);
-  }
-
-  .btn-nav {
-    height: 30px;
-    padding: 0 24px;
-  }
-
-  .hero-title {
-    font-size: 56px;
-    line-height: 67.2px;
-    letter-spacing: -1.12px;
-  }
-
-  .hero-text {
-    margin-top: 23.9px;
-  }
-
-  .section-title {
-    font-size: 36px;
-    font-weight: 700;
-    line-height: 45px;
-  }
-
-  .section-text {
-    margin-top: 18px;
-  }
-
-  .destination-grid {
-    grid-template-columns: repeat(2, 1fr);
-    row-gap: 23px;
-  }
-
-  .about {
-    padding-top: 96px;
-  }
-
-  .about-card {
-    margin-top: 33px;
-    padding: 49px 48px 48px;
-  }
-
-  .footer-inner {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 48px 0;
-  }
-
-  .footer-nav {
-    max-width: 150px;
-    margin-top: 0;
-  }
-
-  .footer-meta {
-    align-self: auto;
-    width: 205px;
-  }
-
-  .back-to-top {
-    margin-top: 6px;
-  }
-}
-
-/* ==========================================================================
    Desktop
    ========================================================================== */
-@media (min-width: 1024px) {
-  /* keep the tablet line length instead of one 1200px line */
-  .hero-text {
-    max-width: 608px;
-  }
-
-  .about-card {
-    max-width: 800px;
-    margin-inline: auto;
-  }
+.hero-description {
+  max-width: 608px;
+  margin-inline: auto;
 }
 
-@media (min-width: 1280px) {
-  .destination-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+.about-card {
+  max-width: 800px;
+  margin-inline: auto;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
+.destination-grid {
+  grid-template-columns: repeat(4, 1fr);
 }
