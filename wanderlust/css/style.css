@@ -126,7 +126,6 @@ body {
 .hero {
     position: relative;
     box-sizing: border-box;
-    width: 100%;
     aspect-ratio: 1 / 2;
     overflow: hidden;
 }
@@ -139,7 +138,7 @@ body {
     z-index: 0;
     background-image: url("../images/bg-img.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% auto;
     background-position: center bottom 315px;
 
 }
@@ -202,110 +201,112 @@ body {
 /* ==========================================================================
    Section headings
    ========================================================================== */
-.section-head {
+.destination-container {
+  margin: 0 65px;
+}
+
+.section-header {
+  margin: 66px 0 245px 0;
   text-align: center;
 }
 
 .section-title {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  text-align: center;
-  color: var(--primary-dark);
+  color: var(--primary-accent);
+  padding-bottom: 70px;
+  font-size: 62px;
+  font-weight: 500;
 }
 
-.section-text {
-  margin-top: 16px;
-}
-
-/* ==========================================================================
-   Destinations
-   ========================================================================== */
-.destinations {
-  padding: var(--section-space) 0;
+.section-subtitle {
+  font-size: 63px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+  line-height: 1.5;
 }
 
 .destination-grid {
   display: grid;
-  gap: 24px;
-  margin-top: 64px;
-}
-
-.destination-item {
-  display: flex;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 110px;
 }
 
 .destination-card {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  overflow: hidden;
-  border: 1px solid var(--border-card);
-  border-radius: var(--radius-md);
   background: var(--bg-card);
-  transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease;
+  border-radius: var(--radius-sm);
+  border: 3px solid var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
 }
 
-/* hover on the <li> so the lifted card doesn't slip from under the cursor */
-.destination-item:hover .destination-card {
+.destination-card:hover {
   transform: translateY(-6px);
-  box-shadow: var(--shadow-card-hover);
 }
 
-.destination-media {
+.destination-cover {
   position: relative;
+  width: 100%;
   overflow: hidden;
 }
 
-.destination-media img {
+.destination-cover img {
   width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 3;
+  height: 100%;
   object-fit: cover;
-  transition: transform 0.6s var(--ease-out);
+  border-top-left-radius: var(--radius-md);
+  border-top-right-radius: var(--radius-md);
 }
 
-.destination-item:hover .destination-media img {
-  transform: scale(1.05);
-}
-
-.price-tag {
+.destination-price {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  height: 22px;
-  padding: 0 12px;
-  border-radius: var(--radius-pill);
-  background: var(--sand);
-  box-shadow: var(--shadow-xs);
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 22px;
-  letter-spacing: 0.7px;
-  color: var(--sand-text);
+  top: 62px;
+  right: 62px;
+  padding: 6px 45px;
+  background-color: var(--secondary-accent);
+  color: var(--text-dark);
+  font-size: 58px;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  border-radius: var(--radius-sm);
 }
 
-.destination-body {
+.destination-info {
+  padding: 94px 92px 87px 95px;
   display: flex;
-  flex: 1;
   flex-direction: column;
-  padding: 26px 24px 24px;
+  flex-grow: 1;
+  border-bottom-left-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
+  font-size: 57px;
 }
 
 .destination-title {
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 35px;
-  color: var(--primary);
+  font-size: 110px;
+  font-weight: 600;
+  margin-bottom: 45px;
+  color: var(--primary-accent);
 }
 
-.destination-text {
-  margin: 11px 0 24px;
+.destination-desc {
+  font-size: 60px;
+  word-spacing: 7.5px;
+  line-height: 1.55;
+  margin-bottom: 89px;
 }
 
-/* equal-height cards: the button sits at the bottom whatever the text length */
-.destination-body .btn-sand {
-  margin-top: auto;
+.destination-btn {
+  text-decoration: none;
+  color: var(--text-dark);
+  text-align: center;
+  display: inline-block;
+  padding: 37px 0;
+  background-color: var(--secondary-accent);
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* ==========================================================================
@@ -412,21 +413,4 @@ body {
 
 .back-to-top:hover img {
   transform: translateY(-3px);
-}
-
-/* ==========================================================================
-   Desktop
-   ========================================================================== */
-.hero-description {
-  max-width: 608px;
-  margin-inline: auto;
-}
-
-.about-card {
-  max-width: 800px;
-  margin-inline: auto;
-}
-
-.destination-grid {
-  grid-template-columns: repeat(4, 1fr);
 }
