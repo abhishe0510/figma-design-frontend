@@ -7,29 +7,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <header class="site-header">
-    <nav class="navbar container" aria-label="Primary">
-      <a class="logo" href="#home">Wanderlust</a>
-
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
-        <img src="assets/icons/icon-menu.svg" alt="" width="23" height="15">
-        <span class="visually-hidden">Menu</span>
-      </button>
-
-      <div class="nav-menu" id="nav-menu">
-        <ul class="nav-links">
-          <li><a class="nav-link is-active" href="#home" aria-current="true">Home</a></li>
-          <li><a class="nav-link" href="#about">About</a></li>
-          <li><a class="nav-link" href="#destinations">Destinations</a></li>
-        </ul>
-        <a class="btn btn-pill btn-nav" href="#destinations">Book Now</a>
+  <header class="header">
+      <div class="header-container">
+          <a href="#home" class="logo">Wanderlust</a>
+          <div class="header-menu">
+              <button class="menu-button" aria-label="Show navigation">
+                  <span class="menu-stroke"></span>
+                  <span class="menu-stroke"></span>
+                  <span class="menu-stroke"></span>
+              </button>
+              <nav class="header-nav">
+                  <a href="#home">Home</a>
+                  <a href="#destinations">Destinations</a>
+                  <a href="#about">About Us</a>
+                  <a href="#booking" class="header-book-btn">Book Now</a>
+              </nav>
+          </div>
       </div>
-    </nav>
   </header>
 
   <main id="main">
