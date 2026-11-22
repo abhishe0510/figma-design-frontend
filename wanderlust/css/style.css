@@ -312,39 +312,24 @@ body {
 /* ==========================================================================
    About
    ========================================================================== */
-.about {
-  padding: 95px 0 var(--section-space);
-  background: var(--bg-about);
+.about-container {
+    text-align: center;
+    padding: 692px 50px 315px 50px;
 }
 
 .about-card {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  margin-top: 33px;
-  padding: 31px 31px 33px;
-  border: 1px solid var(--border-soft);
-  border-radius: var(--radius-lg);
+  margin-top: 60px;
   background: var(--bg-card);
-  box-shadow: var(--shadow-xs);
-  font-size: 18px;
-  line-height: 29.25px;
+  border: 3px solid var(--shadow);
+  border-radius: var(--radius-sm);
+  padding: 127px 80px;
+  font-size: 72px;
+  letter-spacing: -0.95px;
+  line-height: 1.57;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-}
-
-/* decorative blurred circle, top-right */
-.about-card::before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  top: -79px;
-  right: -79px;
-  width: 256px;
-  height: 256px;
-  border-radius: 50%;
-  background: var(--blob);
-  opacity: 0.3;
-  filter: blur(64px);
 }
 
 /* ==========================================================================
