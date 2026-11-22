@@ -1,27 +1,29 @@
-'use strict';
+"use strict";
 
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+);
 
 function initNav() {
-  const toggle = document.querySelector('.nav-toggle');
-  const menu = document.getElementById('nav-menu');
-  const links = [...menu.querySelectorAll('.nav-link')];
+  const toggle = document.querySelector(".nav-toggle");
+  const menu = document.getElementById("nav-menu");
+  const links = [...menu.querySelectorAll(".nav-link")];
 
   const setOpen = (open) => {
-    toggle.setAttribute('aria-expanded', String(open));
-    menu.classList.toggle('is-open', open);
+    toggle.setAttribute("aria-expanded", String(open));
+    menu.classList.toggle("is-open", open);
   };
 
-  toggle.addEventListener('click', () => {
-    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  toggle.addEventListener("click", () => {
+    setOpen(toggle.getAttribute("aria-expanded") !== "true");
   });
 
-  menu.addEventListener('click', (e) => {
-    if (e.target.closest('.nav-link')) setOpen(false);
+  menu.addEventListener("click", (e) => {
+    if (e.target.closest(".nav-link")) setOpen(false);
   });
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menu.classList.contains("is-open")) {
       setOpen(false);
       toggle.focus();
     }
@@ -29,17 +31,20 @@ function initNav() {
 
   const setActive = (id) => {
     const match =
-      links.find((l) => l.getAttribute('href') === `#${id}` && l.textContent.trim().toLowerCase() === id) ||
-      links.find((l) => l.getAttribute('href') === `#${id}`);
+      links.find(
+        (l) =>
+          l.getAttribute("href") === `#${id}` &&
+          l.textContent.trim().toLowerCase() === id,
+      ) || links.find((l) => l.getAttribute("href") === `#${id}`);
     if (!match) return;
     links.forEach((l) => {
-      l.classList.toggle('is-active', l === match);
-      if (l === match) l.setAttribute('aria-current', 'true');
-      else l.removeAttribute('aria-current');
+      l.classList.toggle("is-active", l === match);
+      if (l === match) l.setAttribute("aria-current", "true");
+      else l.removeAttribute("aria-current");
     });
   };
 
-  const sections = ['home', 'projects', 'recommendations', 'contact']
+  const sections = ["home", "projects", "recommendations", "contact"]
     .map((id) => document.getElementById(id))
     .filter(Boolean);
 
@@ -49,15 +54,15 @@ function initNav() {
         if (entry.isIntersecting) setActive(entry.target.id);
       });
     },
-    { rootMargin: '-45% 0px -50% 0px' }
+    { rootMargin: "-45% 0px -50% 0px" },
   );
   sections.forEach((s) => observer.observe(s));
 }
 
 function initCarousel() {
-  const viewport = document.querySelector('.reviews-viewport');
-  const track = document.querySelector('.reviews-track');
-  const dots = [...document.querySelectorAll('.slider-dot')];
+  const viewport = document.querySelector(".reviews-viewport");
+  const track = document.querySelector(".reviews-track");
+  const dots = [...document.querySelectorAll(".slider-dot")];
   if (!viewport || !track || !dots.length) return;
 
   const slides = [...track.children];
@@ -67,15 +72,18 @@ function initCarousel() {
 
   const makeClone = (slide) => {
     const clone = slide.cloneNode(true);
-    clone.setAttribute('aria-hidden', 'true');
+    clone.setAttribute("aria-hidden", "true");
     clone.inert = true;
-    clone.classList.add('is-clone');
+    clone.classList.add("is-clone");
     return clone;
   };
-  slides.slice(-CLONES).reverse().forEach((s) => track.prepend(makeClone(s)));
+  slides
+    .slice(-CLONES)
+    .reverse()
+    .forEach((s) => track.prepend(makeClone(s)));
   slides.slice(0, CLONES).forEach((s) => track.append(makeClone(s)));
 
-  let currentIndex = dots.findIndex((d) => d.classList.contains('active'));
+  let currentIndex = dots.findIndex((d) => d.classList.contains("active"));
   if (currentIndex < 0) currentIndex = 0;
   let timer = null;
   let isAnimating = false;
@@ -86,16 +94,16 @@ function initCarousel() {
   };
 
   const render = (index, animate = true) => {
-    track.classList.toggle('no-transition', !animate);
+    track.classList.toggle("no-transition", !animate);
     track.style.transform = `translateX(${offsetFor(index)}px)`;
     const real = ((index % total) + total) % total;
     dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === real);
-      if (i === real) dot.setAttribute('aria-current', 'true');
-      else dot.removeAttribute('aria-current');
+      dot.classList.toggle("active", i === real);
+      if (i === real) dot.setAttribute("aria-current", "true");
+      else dot.removeAttribute("aria-current");
     });
     slides.forEach((slide, i) => {
-      slide.setAttribute('aria-hidden', String(i !== real));
+      slide.setAttribute("aria-hidden", String(i !== real));
     });
   };
 
@@ -123,7 +131,7 @@ function initCarousel() {
     }
   }
 
-  track.addEventListener('transitionend', (e) => {
+  track.addEventListener("transitionend", (e) => {
     if (e.target === track) normalise();
   });
 
@@ -131,31 +139,42 @@ function initCarousel() {
   const prev = () => updateSlide(currentIndex - 1);
 
   dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
+    dot.addEventListener("click", () => {
       updateSlide(index);
       restart();
     });
   });
 
-  viewport.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') { next(); restart(); }
-    if (e.key === 'ArrowLeft') { prev(); restart(); }
+  viewport.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") {
+      next();
+      restart();
+    }
+    if (e.key === "ArrowLeft") {
+      prev();
+      restart();
+    }
   });
 
   let startX = null;
-  viewport.addEventListener('pointerdown', (e) => { startX = e.clientX; });
-  viewport.addEventListener('pointerup', (e) => {
+  viewport.addEventListener("pointerdown", (e) => {
+    startX = e.clientX;
+  });
+  viewport.addEventListener("pointerup", (e) => {
     if (startX === null) return;
     const dx = e.clientX - startX;
     startX = null;
     if (Math.abs(dx) > 50) {
-      if (dx < 0) next(); else prev();
+      if (dx < 0) next();
+      else prev();
       restart();
     }
   });
-  viewport.addEventListener('pointercancel', () => { startX = null; });
+  viewport.addEventListener("pointercancel", () => {
+    startX = null;
+  });
 
-  const carousel = viewport.closest('.reviews');
+  const carousel = viewport.closest(".reviews");
   let hovered = false;
   let focused = false;
 
@@ -164,7 +183,14 @@ function initCarousel() {
     timer = null;
   };
   const start = () => {
-    if (prefersReducedMotion.matches || timer || hovered || focused || document.hidden) return;
+    if (
+      prefersReducedMotion.matches ||
+      timer ||
+      hovered ||
+      focused ||
+      document.hidden
+    )
+      return;
     timer = setInterval(next, AUTOPLAY_MS);
   };
   function restart() {
@@ -172,18 +198,29 @@ function initCarousel() {
     start();
   }
 
-  carousel.addEventListener('mouseenter', () => { hovered = true; stop(); });
-  carousel.addEventListener('mouseleave', () => { hovered = false; start(); });
-  carousel.addEventListener('focusin', () => { focused = true; stop(); });
-  carousel.addEventListener('focusout', (e) => {
+  carousel.addEventListener("mouseenter", () => {
+    hovered = true;
+    stop();
+  });
+  carousel.addEventListener("mouseleave", () => {
+    hovered = false;
+    start();
+  });
+  carousel.addEventListener("focusin", () => {
+    focused = true;
+    stop();
+  });
+  carousel.addEventListener("focusout", (e) => {
     if (carousel.contains(e.relatedTarget)) return;
     focused = false;
     start();
   });
-  document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+  document.addEventListener("visibilitychange", () =>
+    document.hidden ? stop() : start(),
+  );
 
   let resizeFrame;
-  window.addEventListener('resize', () => {
+  window.addEventListener("resize", () => {
     cancelAnimationFrame(resizeFrame);
     resizeFrame = requestAnimationFrame(() => render(currentIndex, false));
   });
@@ -194,18 +231,20 @@ function initCarousel() {
 }
 
 function initContactForm() {
-  const contactForm = document.getElementById('contactForm');
+  const contactForm = document.getElementById("contactForm");
   if (!contactForm) return;
 
   const submitBtn = contactForm.querySelector('button[type="submit"]');
-  const status = contactForm.querySelector('.form-status');
+  const status = contactForm.querySelector(".form-status");
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
   const rules = {
-    fullName: (v) => (v ? '' : 'Please enter your full name.'),
+    fullName: (v) => (v ? "" : "Please enter your full name."),
     email: (v) => {
-      if (!v) return 'Please enter your email address.';
-      return EMAIL_RE.test(v) ? '' : 'Please enter a valid email, like name@example.com.';
+      if (!v) return "Please enter your email address.";
+      return EMAIL_RE.test(v)
+        ? ""
+        : "Please enter a valid email, like name@example.com.";
     },
   };
 
@@ -213,26 +252,28 @@ function initContactForm() {
     const message = rules[input.id](input.value.trim());
     const error = document.getElementById(`${input.id}-error`);
     error.textContent = message;
-    if (message) input.setAttribute('aria-invalid', 'true');
-    else input.removeAttribute('aria-invalid');
+    if (message) input.setAttribute("aria-invalid", "true");
+    else input.removeAttribute("aria-invalid");
     return !message;
   };
 
   Object.keys(rules).forEach((id) => {
     const input = contactForm.querySelector(`#${id}`);
-    input.addEventListener('input', () => {
-      if (input.hasAttribute('aria-invalid')) validateField(input);
+    input.addEventListener("input", () => {
+      if (input.hasAttribute("aria-invalid")) validateField(input);
     });
-    input.addEventListener('blur', () => {
+    input.addEventListener("blur", () => {
       if (input.value.trim()) validateField(input);
     });
   });
 
-  contactForm.addEventListener('submit', (e) => {
+  contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    status.textContent = '';
+    status.textContent = "";
 
-    const fields = Object.keys(rules).map((id) => contactForm.querySelector(`#${id}`));
+    const fields = Object.keys(rules).map((id) =>
+      contactForm.querySelector(`#${id}`),
+    );
     const invalid = fields.filter((input) => !validateField(input));
     if (invalid.length) {
       invalid[0].focus();
@@ -240,13 +281,13 @@ function initContactForm() {
     }
 
     submitBtn.disabled = true;
-    submitBtn.textContent = 'SENDING...';
+    submitBtn.textContent = "SENDING...";
 
     setTimeout(() => {
       contactForm.reset();
       submitBtn.disabled = false;
-      submitBtn.textContent = 'SEND MESSAGE';
-      status.textContent = 'Message received! Thank you for getting in touch.';
+      submitBtn.textContent = "SEND MESSAGE";
+      status.textContent = "Message received! Thank you for getting in touch.";
     }, 1000);
   });
 }
