@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wanderlust | Dream Travel Destinations</title>
+  <meta name="description" content="Wanderlust travel agency: curated trips to the Maldives, Swiss Alps, African safaris and Tokyo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Primary">
+      <a class="logo" href="#home">Wanderlust</a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
+        <img src="assets/icons/icon-menu.svg" alt="" width="23" height="15">
+        <span class="visually-hidden">Menu</span>
+      </button>
+
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-links">
+          <li><a class="nav-link is-active" href="#home" aria-current="true">Home</a></li>
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="#destinations">Destinations</a></li>
+        </ul>
+        <a class="btn btn-pill btn-nav" href="#destinations">Book Now</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-content container">
+        <h1 class="hero-title" id="hero-title">Welcome to Dream Travel</h1>
+        <p class="hero-text">Find your next adventure here. Explore pristine beaches, towering mountains, and vibrant cities with our curated travel experiences.</p>
+        <a class="btn btn-pill btn-hero" href="#destinations">
+          Book Now
+          <img src="assets/icons/icon-arrow-right.svg" alt="" width="16" height="16">
+        </a>
+      </div>
+    </section>
+
+    <section class="destinations" id="destinations" aria-labelledby="destinations-title">
+      <div class="container">
+        <header class="section-head">
+          <h2 class="section-title" id="destinations-title">Featured Destinations</h2>
+          <p class="section-text">Discover our most popular travel spots curated just for you.</p>
+        </header>
+
+        <ul class="destination-grid">
+          <li class="destination-item">
+            <article class="destination-card">
+              <div class="destination-media">
+                <img src="assets/images/dest-maldives.jpg" alt="Overwater villas along a curved jetty above turquoise Maldives lagoon" width="356" height="267" loading="lazy">
+                <p class="price-tag">From $1,299</p>
+              </div>
+              <div class="destination-body">
+                <h3 class="destination-title">Maldives</h3>
+                <p class="destination-text">Experience ultimate luxury in crystal clear waters and pristine white sand beaches.</p>
+                <a class="btn btn-sand" href="#about" aria-label="Learn more about Maldives">Learn More</a>
+              </div>
+            </article>
+          </li>
+          <li class="destination-item">
+            <article class="destination-card">
+              <div class="destination-media">
+                <img src="assets/images/dest-swiss-alps.jpg" alt="Snow-covered wooden chalet with glowing windows below Swiss Alps peaks" width="356" height="267" loading="lazy">
+                <p class="price-tag">From $899</p>
+              </div>
+              <div class="destination-body">
+                <h3 class="destination-title">Swiss Alps</h3>
+                <p class="destination-text">Hit the slopes or relax in a cozy chalet with breathtaking mountain views.</p>
+                <a class="btn btn-sand" href="#about" aria-label="Learn more about the Swiss Alps">Learn More</a>
+              </div>
+            </article>
+          </li>
+          <li class="destination-item">
+            <article class="destination-card">
+              <div class="destination-media">
+                <img src="assets/images/dest-safari.jpg" alt="Herd of elephants crossing the savanna at sunset beside an acacia tree" width="356" height="267" loading="lazy">
+                <p class="price-tag">From $2,499</p>
+              </div>
+              <div class="destination-body">
+                <h3 class="destination-title">Safari Adventure</h3>
+                <p class="destination-text">Witness extraordinary wildlife in their natural habitat across vast plains.</p>
+                <a class="btn btn-sand" href="#about" aria-label="Learn more about the Safari Adventure">Learn More</a>
+              </div>
+            </article>
+          </li>
+          <li class="destination-item">
+            <article class="destination-card">
+              <div class="destination-media">
+                <img src="assets/images/dest-tokyo.jpg" alt="Busy Tokyo street crossing lit by neon signs at night" width="356" height="267" loading="lazy">
+                <p class="price-tag">From $1,599</p>
+              </div>
+              <div class="destination-body">
+                <h3 class="destination-title">Tokyo City</h3>
+                <p class="destination-text">Immerse yourself in a vibrant metropolis blending deep tradition with modern tech.</p>
+                <a class="btn btn-sand" href="#about" aria-label="Learn more about Tokyo City">Learn More</a>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <h2 class="section-title" id="about-title">About Us</h2>
+        <div class="about-card">
+          <p>We are a passionate team of travelers dedicated to helping you find the perfect getaway. From sunny beaches to snowy mountains, we handle all the details so you can enjoy the journey. Our mission is to make exploration effortless, providing curated itineraries and seamless booking experiences that let you focus on making memories.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner container">
+      <a class="logo footer-logo" href="#home">Wanderlust</a>
+      <nav class="footer-nav" aria-label="Footer">
+        <ul>
+          <li><a href="#about">Privacy Policy</a></li>
+          <li><a href="#about">Terms of Service</a></li>
+          <li><a href="#about">Contact Us</a></li>
+          <li><a href="#about">FAQ</a></li>
+        </ul>
+      </nav>
+      <div class="footer-meta">
+        <p class="copyright">© 2024 Wanderlust Travel Agency. All rights reserved.</p>
+        <a class="back-to-top" href="#home">
+          Back to Top
+          <img src="assets/icons/icon-arrow-up.svg" alt="" width="10" height="10">
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
