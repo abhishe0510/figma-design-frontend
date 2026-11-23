@@ -1,297 +1,190 @@
 "use strict";
 
-const prefersReducedMotion = window.matchMedia(
-  "(prefers-reduced-motion: reduce)",
-);
+const resetScrollPosition = () => {
+  const forceTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  };
 
-function initNav() {
+  forceTop();
+  requestAnimationFrame(forceTop);
+  setTimeout(forceTop, 0);
+};
+
+history.scrollRestoration = "manual";
+window.addEventListener(
+  "load",
+  () => {
+    resetScrollPosition();
+    setTimeout(resetScrollPosition, 50);
+  },
+  { once: true },
+);
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) resetScrollPosition();
+});
+resetScrollPosition();
+
+/* ==========================================================
+   Navbar: mobile menu toggle
+   ========================================================== */
+(() => {
   const toggle = document.querySelector(".nav-toggle");
-  const menu = document.getElementById("nav-menu");
-  const links = [...menu.querySelectorAll(".nav-link")];
+  const list = document.getElementById("nav-list");
+  if (!toggle || !list) return;
 
   const setOpen = (open) => {
     toggle.setAttribute("aria-expanded", String(open));
-    menu.classList.toggle("is-open", open);
+    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    list.classList.toggle("is-open", open);
   };
 
   toggle.addEventListener("click", () => {
     setOpen(toggle.getAttribute("aria-expanded") !== "true");
   });
 
-  menu.addEventListener("click", (e) => {
+  // Close after choosing a link
+  list.addEventListener("click", (e) => {
     if (e.target.closest(".nav-link")) setOpen(false);
   });
 
+  // Close with Escape and return focus to the toggle
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && menu.classList.contains("is-open")) {
+    if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
       setOpen(false);
       toggle.focus();
     }
   });
+})();
 
-  const setActive = (id) => {
-    const match =
-      links.find(
-        (l) =>
-          l.getAttribute("href") === `#${id}` &&
-          l.textContent.trim().toLowerCase() === id,
-      ) || links.find((l) => l.getAttribute("href") === `#${id}`);
-    if (!match) return;
-    links.forEach((l) => {
-      l.classList.toggle("is-active", l === match);
-      if (l === match) l.setAttribute("aria-current", "true");
-      else l.removeAttribute("aria-current");
-    });
-  };
+("use strict");
 
-  const sections = ["home", "projects", "recommendations", "contact"]
-    .map((id) => document.getElementById(id))
-    .filter(Boolean);
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) setActive(entry.target.id);
-      });
-    },
-    { rootMargin: "-45% 0px -50% 0px" },
-  );
-  sections.forEach((s) => observer.observe(s));
-}
-
-function initCarousel() {
-  const viewport = document.querySelector(".reviews-viewport");
+/* ==========================================================
+   Recommendations carousel (centre-mode)
+   The active slide is centred; its neighbours peek in at both edges.
+   ========================================================== */
+(() => {
   const track = document.querySelector(".reviews-track");
-  const dots = [...document.querySelectorAll(".slider-dot")];
-  if (!viewport || !track || !dots.length) return;
+  const dots = document.querySelectorAll(".slider-dot");
+  if (!track || !dots.length) return;
 
-  const slides = [...track.children];
-  const total = slides.length;
-  const CLONES = 3;
-  const AUTOPLAY_MS = 5000;
+  const viewport = track.parentElement;
+  const slides = track.children;
+  let currentIndex = 2; // the third slide is active on load (matches the design)
 
-  const makeClone = (slide) => {
-    const clone = slide.cloneNode(true);
-    clone.setAttribute("aria-hidden", "true");
-    clone.inert = true;
-    clone.classList.add("is-clone");
-    return clone;
-  };
-  slides
-    .slice(-CLONES)
-    .reverse()
-    .forEach((s) => track.prepend(makeClone(s)));
-  slides.slice(0, CLONES).forEach((s) => track.append(makeClone(s)));
+  function updateSlide(index) {
+    currentIndex = index;
 
-  let currentIndex = dots.findIndex((d) => d.classList.contains("active"));
-  if (currentIndex < 0) currentIndex = 0;
-  let timer = null;
-  let isAnimating = false;
+    const slideWidth = slides[0].offsetWidth;
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
 
-  const offsetFor = (index) => {
-    const card = track.children[index + CLONES];
-    return viewport.clientWidth / 2 - (card.offsetLeft + card.offsetWidth / 2);
-  };
+    // Put the active slide in the middle of the viewport
+    const offset =
+      viewport.clientWidth / 2 -
+      slideWidth / 2 -
+      currentIndex * (slideWidth + gap);
+    track.style.transform = `translateX(${offset}px)`;
 
-  const render = (index, animate = true) => {
-    track.classList.toggle("no-transition", !animate);
-    track.style.transform = `translateX(${offsetFor(index)}px)`;
-    const real = ((index % total) + total) % total;
     dots.forEach((dot, i) => {
-      dot.classList.toggle("active", i === real);
-      if (i === real) dot.setAttribute("aria-current", "true");
+      const isActive = i === currentIndex;
+      dot.classList.toggle("active", isActive);
+      if (isActive) dot.setAttribute("aria-current", "true");
       else dot.removeAttribute("aria-current");
     });
-    slides.forEach((slide, i) => {
-      slide.setAttribute("aria-hidden", String(i !== real));
-    });
-  };
-
-  let settleTimer;
-
-  function updateSlide(index, animate = true) {
-    if (isAnimating && animate) return;
-    currentIndex = index;
-    isAnimating = animate && !prefersReducedMotion.matches;
-    render(index, isAnimating);
-    if (isAnimating) {
-      settleTimer = setTimeout(normalise, 700);
-    } else {
-      normalise();
-    }
   }
-
-  function normalise() {
-    clearTimeout(settleTimer);
-    isAnimating = false;
-    if (currentIndex < 0 || currentIndex >= total) {
-      currentIndex = ((currentIndex % total) + total) % total;
-      render(currentIndex, false);
-      void track.offsetWidth;
-    }
-  }
-
-  track.addEventListener("transitionend", (e) => {
-    if (e.target === track) normalise();
-  });
-
-  const next = () => updateSlide(currentIndex + 1);
-  const prev = () => updateSlide(currentIndex - 1);
 
   dots.forEach((dot, index) => {
-    dot.addEventListener("click", () => {
-      updateSlide(index);
-      restart();
-    });
+    dot.addEventListener("click", () => updateSlide(index));
   });
 
-  viewport.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight") {
-      next();
-      restart();
-    }
-    if (e.key === "ArrowLeft") {
-      prev();
-      restart();
-    }
+  // Arrow keys move between slides while a dot has focus
+  document.querySelector(".slider-dots").addEventListener("keydown", (e) => {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    const next =
+      e.key === "ArrowRight"
+        ? Math.min(currentIndex + 1, dots.length - 1)
+        : Math.max(currentIndex - 1, 0);
+    updateSlide(next);
+    dots[next].focus();
   });
 
-  let startX = null;
-  viewport.addEventListener("pointerdown", (e) => {
-    startX = e.clientX;
-  });
-  viewport.addEventListener("pointerup", (e) => {
-    if (startX === null) return;
-    const dx = e.clientX - startX;
-    startX = null;
-    if (Math.abs(dx) > 50) {
-      if (dx < 0) next();
-      else prev();
-      restart();
-    }
-  });
-  viewport.addEventListener("pointercancel", () => {
-    startX = null;
-  });
+  window.addEventListener("resize", () => updateSlide(currentIndex));
 
-  const carousel = viewport.closest(".reviews");
-  let hovered = false;
-  let focused = false;
+  // Position without animation first, then enable the transition
+  updateSlide(currentIndex);
+  requestAnimationFrame(() => track.classList.add("is-ready"));
+})();
 
-  const stop = () => {
-    clearInterval(timer);
-    timer = null;
-  };
-  const start = () => {
-    if (
-      prefersReducedMotion.matches ||
-      timer ||
-      hovered ||
-      focused ||
-      document.hidden
-    )
-      return;
-    timer = setInterval(next, AUTOPLAY_MS);
-  };
-  function restart() {
-    stop();
-    start();
-  }
+/* ==========================================================
+   Contact form: validation + simulated submit
+   ========================================================== */
+(() => {
+  const form = document.getElementById("contactForm");
+  if (!form) return;
 
-  carousel.addEventListener("mouseenter", () => {
-    hovered = true;
-    stop();
-  });
-  carousel.addEventListener("mouseleave", () => {
-    hovered = false;
-    start();
-  });
-  carousel.addEventListener("focusin", () => {
-    focused = true;
-    stop();
-  });
-  carousel.addEventListener("focusout", (e) => {
-    if (carousel.contains(e.relatedTarget)) return;
-    focused = false;
-    start();
-  });
-  document.addEventListener("visibilitychange", () =>
-    document.hidden ? stop() : start(),
-  );
+  const status = document.getElementById("formStatus");
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  let resizeFrame;
-  window.addEventListener("resize", () => {
-    cancelAnimationFrame(resizeFrame);
-    resizeFrame = requestAnimationFrame(() => render(currentIndex, false));
-  });
-
-  render(currentIndex, false);
-  document.fonts?.ready.then(() => render(currentIndex, false));
-  start();
-}
-
-function initContactForm() {
-  const contactForm = document.getElementById("contactForm");
-  if (!contactForm) return;
-
-  const submitBtn = contactForm.querySelector('button[type="submit"]');
-  const status = contactForm.querySelector(".form-status");
-  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-  const rules = {
-    fullName: (v) => (v ? "" : "Please enter your full name."),
-    email: (v) => {
-      if (!v) return "Please enter your email address.";
-      return EMAIL_RE.test(v)
-        ? ""
-        : "Please enter a valid email, like name@example.com.";
-    },
-  };
-
-  const validateField = (input) => {
-    const message = rules[input.id](input.value.trim());
+  const setError = (input, message) => {
     const error = document.getElementById(`${input.id}-error`);
     error.textContent = message;
-    if (message) input.setAttribute("aria-invalid", "true");
-    else input.removeAttribute("aria-invalid");
-    return !message;
+    error.hidden = false;
+    input.setAttribute("aria-invalid", "true");
+    input.setAttribute("aria-describedby", error.id);
   };
 
-  Object.keys(rules).forEach((id) => {
-    const input = contactForm.querySelector(`#${id}`);
-    input.addEventListener("input", () => {
-      if (input.hasAttribute("aria-invalid")) validateField(input);
-    });
-    input.addEventListener("blur", () => {
-      if (input.value.trim()) validateField(input);
-    });
+  const clearError = (input) => {
+    const error = document.getElementById(`${input.id}-error`);
+    error.textContent = "";
+    error.hidden = true;
+    input.removeAttribute("aria-invalid");
+    input.removeAttribute("aria-describedby");
+  };
+
+  // Returns true when the field is valid
+  const validate = (input) => {
+    const value = input.value.trim();
+
+    if (input.required && !value) {
+      setError(input, "This field is required.");
+      return false;
+    }
+    if (input.type === "email" && value && !emailPattern.test(value)) {
+      setError(input, "Please enter a valid email address.");
+      return false;
+    }
+    clearError(input);
+    return true;
+  };
+
+  // Clear an error as soon as the user starts fixing it
+  form.addEventListener("input", (e) => {
+    if (e.target.hasAttribute("aria-invalid")) validate(e.target);
   });
 
-  contactForm.addEventListener("submit", (e) => {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
     status.textContent = "";
 
-    const fields = Object.keys(rules).map((id) =>
-      contactForm.querySelector(`#${id}`),
-    );
-    const invalid = fields.filter((input) => !validateField(input));
+    const fields = [...form.querySelectorAll("input, textarea")];
+    const invalid = fields.filter((field) => !validate(field));
+
     if (invalid.length) {
       invalid[0].focus();
       return;
     }
 
+    // Simulated submission feedback
     submitBtn.disabled = true;
     submitBtn.textContent = "SENDING...";
 
     setTimeout(() => {
-      contactForm.reset();
+      form.reset();
       submitBtn.disabled = false;
       submitBtn.textContent = "SEND MESSAGE";
       status.textContent = "Message received! Thank you for getting in touch.";
     }, 1000);
   });
-}
-
-initNav();
-initCarousel();
-initContactForm();
+})();
