@@ -1,35 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rayan Adlrdard | Front-end Developer</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
     <script>
-      history.scrollRestoration = 'manual';
+      history.scrollRestoration = "manual";
       window.scrollTo(0, 0);
     </script>
 
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <header class="header">
       <nav class="nav" aria-label="Main navigation">
         <a href="#home" class="nav-logo" aria-label="Home">
-          <img src="assets/icon/logo.svg" alt="Logo">
+          <img src="assets/icon/logo.svg" alt="Logo" />
         </a>
 
         <ul class="nav-list">
-          <li><a href="#home" class="nav-link active" aria-current="page">Home</a></li>
+          <li>
+            <a href="#home" class="nav-link active" aria-current="page">Home</a>
+          </li>
           <li><a href="#skills" class="nav-link">Skills</a></li>
           <li><a href="#education" class="nav-link">Education</a></li>
           <li><a href="#projects" class="nav-link">Projects</a></li>
-          <li><a href="#recommendations" class="nav-link">Recommendations</a></li>
+          <li>
+            <a href="#recommendations" class="nav-link">Recommendations</a>
+          </li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
       </nav>
@@ -39,65 +46,95 @@
         <div class="hero-content">
           <h1 class="hero-title" id="hero-title">
             I&rsquo;m Rayan Adlrdard
-            <span class="hero-role"><span class="highlight">Front-end</span> Developer</span>
+            <span class="hero-role"
+              ><span class="highlight">Front-end</span> Developer</span
+            >
           </h1>
           <p class="hero-text">
-            Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Et, Volutpat Feugiat
-            Placerat Lobortis. Natoque Rutrum Semper Sed Suspendisse Nunc Lectus.
+            Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Et,
+            Volutpat Feugiat Placerat Lobortis. Natoque Rutrum Semper Sed
+            Suspendisse Nunc Lectus.
           </p>
           <a href="#contact" class="btn-hire">
             Hire me
-            <svg class="btn-hire-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"
-                stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"
-                aria-hidden="true">
-              <path d="M1 6h10M7 2l4 4-4 4"/>
+            <svg
+              class="btn-hire-arrow"
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M1 6h10M7 2l4 4-4 4" />
             </svg>
           </a>
         </div>
-        <img class="hero-illustration"
-            src="assets/images/hero.png"
-            alt="A developer sitting on a desk next to a monitor that shows code"
-            width="808" height="551">
+        <img
+          class="hero-illustration"
+          src="assets/images/hero.png"
+          alt="A developer sitting on a desk next to a monitor that shows code"
+          width="808"
+          height="551"
+        />
         <!-- Decorative floating shapes -->
-        <span class="shape shape-ring shape-ring--yellow-tl" aria-hidden="true"></span>
-        <span class="shape shape-ring shape-ring--green-top" aria-hidden="true"></span>
-        <span class="shape shape-diamond shape-diamond--yellow" aria-hidden="true"></span>
-        <span class="shape shape-diamond shape-diamond--blue" aria-hidden="true"></span>
-        <span class="shape shape-ring shape-ring--green-bl" aria-hidden="true"></span>
-        <span class="shape shape-ring shape-ring--yellow-knee" aria-hidden="true"></span>
+        <span
+          class="shape shape-ring shape-ring--yellow-tl"
+          aria-hidden="true"
+        ></span>
+        <span
+          class="shape shape-ring shape-ring--green-top"
+          aria-hidden="true"
+        ></span>
+        <span
+          class="shape shape-diamond shape-diamond--yellow"
+          aria-hidden="true"
+        ></span>
+        <span
+          class="shape shape-diamond shape-diamond--blue"
+          aria-hidden="true"
+        ></span>
+        <span
+          class="shape shape-ring shape-ring--green-bl"
+          aria-hidden="true"
+        ></span>
+        <span
+          class="shape shape-ring shape-ring--yellow-knee"
+          aria-hidden="true"
+        ></span>
         <span class="shape shape-triangle" aria-hidden="true"></span>
       </section>
-      <section
-        class="projects container"
-        id="projects"
-        aria-labelledby="projects-title"
-      >
-        <header class="section-head">
-          <h2 class="section-title" id="projects-title">Projects</h2>
-          <p class="section-text">
-            Amet Minim Mollit Non Deserunt Ullamco Est Sit Aliqua Dolor Do Amet
-            Sint. Velit Officia Consequat Duis Enim Velit Mollit. Lorem Ipsum
-          </p>
-        </header>
+      <section class="projects" id="projects" aria-labelledby="projects-title">
+        <div class="section-container">
+          <header class="section-header">
+            <h2 class="section-title" id="projects-title">Projects</h2>
+            <p class="section-subtitle">
+              Amet Minim Mollit Non Deserunt Ullamco Est Sit Aliqua Dolor Do
+              Amet Sint. Velit Officia Consequat Duis Enim Velit Mollit. Lorem
+              Ipsum
+            </p>
+          </header>
 
-        <ul class="project-grid">
-          <li class="project-item">
+          <div class="project-grid">
             <article class="project-card">
               <img
-                class="project-cover"
-                src="assets/images/project-1.jpg"
+                class="project-card-image"
+                src="assets/images/projectimage1.png"
                 alt="Two developers reviewing code on a desktop monitor"
                 width="386"
                 height="256"
                 loading="lazy"
               />
-              <div class="project-body">
-                <h3 class="project-title">How To Make Flyer Design</h3>
-                <p class="project-text">
+              <div class="project-card-body">
+                <h3 class="project-card-title">How To Make Flyer Design</h3>
+                <p class="project-card-text">
                   Lorem Ipsum Dolor Sit Amet, Consec Adipiscing Elit Awd And
                   Lorem Ipsum...
                 </p>
-                <ul class="tag-list" aria-label="Tech stack">
+                <ul class="tag-list" aria-label="Technologies used">
                   <li class="tag">Typescript</li>
                   <li class="tag">ReactJs</li>
                   <li class="tag">NextJs</li>
@@ -107,24 +144,22 @@
                 </ul>
               </div>
             </article>
-          </li>
-          <li class="project-item">
             <article class="project-card">
               <img
-                class="project-cover"
-                src="assets/images/project-2.jpg"
-                alt="Developer working across two monitors full of code"
+                class="project-card-image"
+                src="assets/images/projectimage2.png"
+                alt="Two developers working together at a desk with code on screen"
                 width="386"
                 height="256"
                 loading="lazy"
               />
-              <div class="project-body">
-                <h3 class="project-title">How To Make Flyer Design</h3>
-                <p class="project-text">
+              <div class="project-card-body">
+                <h3 class="project-card-title">How To Make Flyer Design</h3>
+                <p class="project-card-text">
                   Lorem Ipsum Dolor Sit Amet, Consec Adipiscing Elit Awd And
                   Lorem Ipsum...
                 </p>
-                <ul class="tag-list" aria-label="Tech stack">
+                <ul class="tag-list" aria-label="Technologies used">
                   <li class="tag">Typescript</li>
                   <li class="tag">ReactJs</li>
                   <li class="tag">NextJs</li>
@@ -132,51 +167,22 @@
                 </ul>
               </div>
             </article>
-          </li>
-          <li class="project-item">
             <article class="project-card">
               <img
-                class="project-cover"
-                src="assets/images/project-3.jpg"
-                alt="Laptop on a wooden desk showing a software development screen"
+                class="project-card-image"
+                src="assets/images/projectimage3.png"
+                alt="Software development sign on a desk with a keyboard, notes and coffee"
                 width="386"
                 height="256"
                 loading="lazy"
               />
-              <div class="project-body">
-                <h3 class="project-title">How To Make Flyer Design</h3>
-                <p class="project-text">
+              <div class="project-card-body">
+                <h3 class="project-card-title">How To Make Flyer Design</h3>
+                <p class="project-card-text">
                   Lorem Ipsum Dolor Sit Amet, Consec Adipiscing Elit Awd And
                   Lorem Ipsum...
                 </p>
-                <ul class="tag-list" aria-label="Tech stack">
-                  <li class="tag">Typescript</li>
-                  <li class="tag">ReactJs</li>
-                  <li class="tag">NextJs</li>
-                  <li class="tag">CSS</li>
-                  <li class="tag">HTML</li>
-                  <li class="tag">MongoDB</li>
-                </ul>
-              </div>
-            </article>
-          </li>
-          <li class="project-item">
-            <article class="project-card">
-              <img
-                class="project-cover"
-                src="assets/images/project-4.jpg"
-                alt="Illustration of a desktop computer surrounded by app and coding icons"
-                width="386"
-                height="256"
-                loading="lazy"
-              />
-              <div class="project-body">
-                <h3 class="project-title">How To Make Flyer Design</h3>
-                <p class="project-text">
-                  Lorem Ipsum Dolor Sit Amet, Consec Adipiscing Elit Awd And
-                  Lorem Ipsum...
-                </p>
-                <ul class="tag-list" aria-label="Tech stack">
+                <ul class="tag-list" aria-label="Technologies used">
                   <li class="tag">Typescript</li>
                   <li class="tag">ReactJs</li>
                   <li class="tag">NextJs</li>
@@ -186,24 +192,22 @@
                 </ul>
               </div>
             </article>
-          </li>
-          <li class="project-item">
             <article class="project-card">
               <img
-                class="project-cover"
-                src="assets/images/project-1.jpg"
-                alt="Two developers discussing code at a shared workstation"
+                class="project-card-image"
+                src="assets/images/projectimage4.png"
+                alt="Illustration of app icons connected around a computer screen"
                 width="386"
                 height="256"
                 loading="lazy"
               />
-              <div class="project-body">
-                <h3 class="project-title">How To Make Flyer Design</h3>
-                <p class="project-text">
+              <div class="project-card-body">
+                <h3 class="project-card-title">How To Make Flyer Design</h3>
+                <p class="project-card-text">
                   Lorem Ipsum Dolor Sit Amet, Consec Adipiscing Elit Awd And
                   Lorem Ipsum...
                 </p>
-                <ul class="tag-list" aria-label="Tech stack">
+                <ul class="tag-list" aria-label="Technologies used">
                   <li class="tag">Typescript</li>
                   <li class="tag">ReactJs</li>
                   <li class="tag">NextJs</li>
@@ -213,24 +217,22 @@
                 </ul>
               </div>
             </article>
-          </li>
-          <li class="project-item">
             <article class="project-card">
               <img
-                class="project-cover"
-                src="assets/images/project-5.jpg"
-                alt="Hands typing on a laptop showing a code editor, coffee cup beside it"
+                class="project-card-image"
+                src="assets/images/projectimage5.png"
+                alt="Two developers reviewing code on a desktop monitor"
                 width="386"
                 height="256"
                 loading="lazy"
               />
-              <div class="project-body">
-                <h3 class="project-title">How To Make Flyer Design</h3>
-                <p class="project-text">
+              <div class="project-card-body">
+                <h3 class="project-card-title">How To Make Flyer Design</h3>
+                <p class="project-card-text">
                   Lorem Ipsum Dolor Sit Amet, Consec Adipiscing Elit Awd And
                   Lorem Ipsum...
                 </p>
-                <ul class="tag-list" aria-label="Tech stack">
+                <ul class="tag-list" aria-label="Technologies used">
                   <li class="tag">Typescript</li>
                   <li class="tag">ReactJs</li>
                   <li class="tag">NextJs</li>
@@ -240,8 +242,33 @@
                 </ul>
               </div>
             </article>
-          </li>
-        </ul>
+            <article class="project-card">
+              <img
+                class="project-card-image"
+                src="assets/images/projectimage6.png"
+                alt="Laptop showing code next to a yellow coffee mug"
+                width="386"
+                height="256"
+                loading="lazy"
+              />
+              <div class="project-card-body">
+                <h3 class="project-card-title">How To Make Flyer Design</h3>
+                <p class="project-card-text">
+                  Lorem Ipsum Dolor Sit Amet, Consec Adipiscing Elit Awd And
+                  Lorem Ipsum...
+                </p>
+                <ul class="tag-list" aria-label="Technologies used">
+                  <li class="tag">Typescript</li>
+                  <li class="tag">ReactJs</li>
+                  <li class="tag">NextJs</li>
+                  <li class="tag">CSS</li>
+                  <li class="tag">HTML</li>
+                  <li class="tag">MongoDB</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
       </section>
 
       <section
