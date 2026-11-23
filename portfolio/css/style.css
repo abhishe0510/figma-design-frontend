@@ -332,69 +332,55 @@ body {
 }
 
 .recommendations {
-  padding-top: var(--section-space);
+  padding-top: 62px; /* cards -> heading */
 }
 
-.recommendations .section-text {
-  max-width: 500px;
-  margin-top: 5.5px;
+/* This section's heading/subtitle spacing is tighter in the design */
+.recommendations .section-subtitle {
+  margin-top: 5px;
+  line-height: 24px;
 }
 
+/* Carousel viewport: clips the track so neighbouring slides peek in at both edges */
 .reviews {
   margin-top: 44px;
-}
-
-.reviews-viewport {
-  margin-inline: -1px;
   overflow: hidden;
-  border-radius: 0;
-  touch-action: pan-y;
 }
 
 .reviews-track {
-  --card-w: 340px;
-  --gap: 25px;
   display: flex;
-  gap: var(--gap);
-
-  transform: translateX(
-    calc(50% - 2 * (var(--card-w) + var(--gap)) - var(--card-w) / 2)
-  );
-  transition: transform 0.6s var(--ease-out);
-  will-change: transform;
+  gap: 23px;
 }
 
-.reviews-track.no-transition {
-  transition: none;
+.reviews-track.is-ready {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.review-card {
-  flex: 0 0 var(--card-w);
-  padding: 23.3px 23px 27px 27px;
-  background: var(--bg-card);
+.review {
+  flex: 0 0 min(341px, 100vw - 96px);
+  padding: 24px 30px 24px 19px;
+  background-color: var(--bg-card);
 }
 
-.stars {
-  display: flex;
-  gap: 10.8px;
-}
-
-.stars img {
-  width: 20.2px;
-  height: 17.6px;
+/* 5 gold stars drawn with a repeating SVG tile (30px pitch) */
+.review-stars {
+  width: 150px;
+  height: 22px;
+  margin-bottom: 13px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 22'%3E%3Cpolygon fill='%23FFB400' points='11,1 13.59,7.94 20.99,8.25 15.18,12.86 17.17,20 11,15.9 4.83,20 6.82,12.86 1.01,8.25 8.41,7.94'/%3E%3C/svg%3E")
+    repeat-x 0 0 / 30px 22px;
 }
 
 .review-title {
-  margin-top: 18px;
+  margin-bottom: 17px;
   font-size: 18px;
   font-weight: 500;
-  line-height: 22px;
+  line-height: 24px;
   color: var(--text-primary);
 }
 
 .review-text {
-  max-width: 290px;
-  margin-top: 18.5px;
+  margin-bottom: 25px;
   font-size: 15px;
   line-height: 24px;
   color: var(--text-muted);
@@ -403,72 +389,63 @@ body {
 .review-author {
   display: flex;
   align-items: center;
-  gap: 24px;
-  margin-top: 22px;
+  gap: 29px;
 }
 
-.avatar {
+.review-avatar {
   flex-shrink: 0;
   width: 90px;
-  height: 81px;
+  height: 80px;
   border-radius: var(--radius-round);
   object-fit: cover;
-  background: var(--bg-page);
+  background-color: var(--input-bg);
 }
 
-.author-name,
-.author-role {
-  display: block;
-}
-
-.author-name {
+.review-name {
+  margin-top: 6px;
   font-size: 18px;
   font-weight: 500;
-  line-height: 22px;
+  line-height: 24px;
   color: var(--text-primary);
 }
 
-.author-role {
-  margin-top: 6px;
+.review-role {
+  margin-top: 3px;
+  margin-left: 4px;
   font-size: 15px;
-  line-height: 18px;
+  line-height: 24px;
   color: var(--text-muted);
 }
 
+/* Pagination dots: 10px dot inside a 20px tap target */
 .slider-dots {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 45px;
+  margin-top: 42px;
 }
 
 .slider-dot {
-  position: relative;
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
   border-radius: var(--radius-round);
-  background: var(--accent-soft);
-  transition:
-    background-color 0.25s ease,
-    transform 0.25s ease;
-}
-
-.slider-dot::after {
-  content: "";
-  position: absolute;
-  inset: -8px -5px;
+  background-color: var(--primary-accent);
+  background-clip: content-box;
+  opacity: 0.5;
+  transition: opacity 0.25s ease;
 }
 
 .slider-dot:hover {
-  transform: scale(1.25);
+  opacity: 0.8;
 }
 
 .slider-dot.active {
-  background: var(--primary-accent);
+  opacity: 1;
 }
 
 .slider-dot:focus-visible {
-  border-radius: var(--radius-round);
+  outline: 2px solid var(--text-primary);
+  outline-offset: 1px;
 }
 
 .contact {
