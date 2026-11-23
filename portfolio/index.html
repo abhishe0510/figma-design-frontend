@@ -499,137 +499,136 @@
           </div>
         </div>
       </section>
+      <section
+        class="contact"
+        id="contact"
+        aria-labelledby="contact-form-title"
+      >
+        <div class="section-container contact-grid">
+          <div class="contact-col">
+            <h2 class="section-title contact-title" id="contact-form-title">
+              Leave ME Your Info
+            </h2>
 
-      <section class="contact container" id="contact" aria-label="Contact">
-        <div class="contact-form-col">
-          <h2 class="contact-title" id="form-title">Leave ME Your Info</h2>
-          <form
-            class="contact-form"
-            id="contactForm"
-            novalidate
-            aria-labelledby="form-title"
-          >
-            <div class="field">
-              <label for="fullName">Your Full Name ( Required)</label>
-              <input
-                id="fullName"
-                name="fullName"
-                type="text"
-                autocomplete="name"
-                required
-                aria-describedby="fullName-error"
-              />
-              <p class="field-error" id="fullName-error"></p>
-            </div>
-            <div class="field">
-              <label for="email">Your Email ( Required)</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autocomplete="email"
-                required
-                aria-describedby="email-error"
-              />
-              <p class="field-error" id="email-error"></p>
-            </div>
-            <div class="field field-subject">
-              <label for="subject">Subject</label>
-              <input id="subject" name="subject" type="text" />
-            </div>
-            <div class="field">
-              <label for="message">Your Message</label>
-              <textarea id="message" name="message"></textarea>
-            </div>
-            <button class="btn btn-primary btn-send" type="submit">
-              SEND MESSAGE
-            </button>
-            <p class="form-status" role="status" aria-live="polite"></p>
-          </form>
-        </div>
+            <form class="contact-form" id="contactForm" novalidate>
+              <div class="form-field">
+                <label for="fullName">Your Full Name ( Required)</label>
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  autocomplete="name"
+                  required
+                />
+                <p class="field-error" id="fullName-error" hidden></p>
+              </div>
+              <div class="form-field">
+                <label for="email">Your Email ( Required)</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  autocomplete="email"
+                  required
+                />
+                <p class="field-error" id="email-error" hidden></p>
+              </div>
+              <div class="form-field">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" />
+                <p class="field-error" id="subject-error" hidden></p>
+              </div>
+              <div class="form-field">
+                <label for="message">Your Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="6"
+                  aria-label="Your Message"
+                ></textarea>
+                <p class="field-error" id="message-error" hidden></p>
+              </div>
 
-        <div class="contact-info-col">
-          <h2 class="contact-title">Contact Information</h2>
-          <ul class="info-list">
-            <li class="info-card">
-              <span class="info-icon"
-                ><img
-                  src="assets/icons/icon-location.svg"
-                  alt=""
-                  width="15"
-                  height="15"
-              /></span>
-              <h3 class="visually-hidden">Address</h3>
-              <dl class="info-rows">
-                <div>
-                  <dt>Country:</dt>
-                  <dd>Bangladesh</dd>
-                </div>
-                <div>
-                  <dt>City:</dt>
-                  <dd>Dhaka</dd>
-                </div>
-                <div>
-                  <dt>Streat:</dt>
-                  <dd>35 Vhatara, Badda</dd>
-                </div>
-              </dl>
-            </li>
-            <li class="info-card">
-              <span class="info-icon"
-                ><img
-                  src="assets/icons/icon-mail.svg"
-                  alt=""
-                  width="15"
-                  height="14"
-              /></span>
-              <h3 class="visually-hidden">Online</h3>
-              <dl class="info-rows">
-                <div>
-                  <dt>Email:</dt>
-                  <dd>
-                    <a href="mailto:youremail@gmail.com">Youremail@Gmail.Com</a>
-                  </dd>
-                </div>
-                <div>
-                  <dt>Skype:</dt>
-                  <dd>@Yourusername</dd>
-                </div>
-                <div>
-                  <dt>Telegram:</dt>
-                  <dd>@Yourusername</dd>
-                </div>
-              </dl>
-            </li>
-            <li class="info-card">
-              <span class="info-icon"
-                ><img
-                  src="assets/icons/icon-mobile.svg"
-                  alt=""
-                  width="11"
-                  height="15"
-              /></span>
-              <h3 class="visually-hidden">Phone</h3>
-              <dl class="info-rows">
-                <div>
-                  <dt>Support Services:</dt>
-                  <dd>15369</dd>
-                </div>
-                <div>
-                  <dt>Office:</dt>
-                  <dd>
-                    <a href="tel:+58021356587235">+58 (021)356 587 235</a>
-                  </dd>
-                </div>
-                <div>
-                  <dt>Personal:</dt>
-                  <dd>
-                    <a href="tel:+58021356587235">+58 (021)356 587 235</a>
-                  </dd>
-                </div>
-              </dl>
-            </li>
-          </ul>
+              <div class="form-actions">
+                <button class="btn-send" type="submit">Send message</button>
+                <p class="form-status" id="formStatus" role="status"></p>
+              </div>
+            </form>
+          </div>
+
+          <div class="contact-col">
+            <h2 class="section-title contact-title">Contact Information</h2>
+            <div class="contact-cards">
+              <article class="contact-card" aria-label="Location">
+                <span class="contact-badge" aria-hidden="true">
+                  <img
+                    src="assets/logoimages/location.png"
+                    alt="Location icon"
+                  />
+                </span>
+                <dl class="contact-list">
+                  <div class="contact-row">
+                    <dt>Country:</dt>
+                    <dd>Bangladesh</dd>
+                  </div>
+                  <div class="contact-row">
+                    <dt>City:</dt>
+                    <dd>Dhaka</dd>
+                  </div>
+                  <div class="contact-row">
+                    <dt>Streat:</dt>
+                    <dd>35 Vhatara, Badda</dd>
+                  </div>
+                </dl>
+              </article>
+              <article class="contact-card" aria-label="Online contacts">
+                <span class="contact-badge" aria-hidden="true">
+                  <img src="assets/logoimages/mail.png" alt="Mail icon" />
+                </span>
+                <dl class="contact-list">
+                  <div class="contact-row">
+                    <dt>Email:</dt>
+                    <dd>
+                      <a href="mailto:Youremail@Gmail.Com"
+                        >Youremail@Gmail.Com</a
+                      >
+                    </dd>
+                  </div>
+                  <div class="contact-row">
+                    <dt>Skype:</dt>
+                    <dd>@Yourusername</dd>
+                  </div>
+                  <div class="contact-row">
+                    <dt>Telegram:</dt>
+                    <dd>@Yourusername</dd>
+                  </div>
+                </dl>
+              </article>
+              <article class="contact-card" aria-label="Phone numbers">
+                <span class="contact-badge" aria-hidden="true">
+                  <img src="assets/logoimages/Mobile.png" alt="Phone icon" />
+                </span>
+                <dl class="contact-list">
+                  <div class="contact-row">
+                    <dt>Support Services:</dt>
+                    <dd>15369</dd>
+                  </div>
+                  <div class="contact-row">
+                    <dt>Office:</dt>
+                    <dd>
+                      <a href="tel:+58021356587235">+58 (021)356 587 235</a>
+                    </dd>
+                  </div>
+                  <div class="contact-row">
+                    <dt>Personal:</dt>
+                    <dd>
+                      <a href="tel:+58021356587235">+58 (021)356 587 235</a>
+                    </dd>
+                  </div>
+                </dl>
+              </article>
+            </div>
+          </div>
         </div>
       </section>
     </main>
