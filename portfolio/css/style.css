@@ -636,21 +636,39 @@ body {
 }
 
 .partners {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 970px;
-  margin-top: var(--section-space);
+  margin-top: 56px; /* contact section -> partner strip */
+  background-color: var(--bg-page);
 }
 
-.partners img {
+.partner-list,
+.rating-list,
+.footer-links,
+.social-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.partner-list {
+  display: flex;
+  justify-content: center;
+}
+
+/* Uneven gaps taken from the design: 144 / 137 / 129px */
+.partner-list li:nth-child(2) {
+  margin-left: 144px;
+}
+.partner-list li:nth-child(3) {
+  margin-left: 137px;
+}
+.partner-list li:nth-child(4) {
+  margin-left: 129px;
+}
+
+.partner-list img {
+  display: block;
   width: 140px;
   height: 144px;
-  transition: transform 0.3s var(--ease-out);
-}
-
-.partners img:hover {
-  transform: scale(1.05);
 }
 
 .footer-main {
